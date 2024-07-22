@@ -8,14 +8,14 @@ class help_cog(commands.Cog):
         self.help_message = """
 '''
 Команды:
-/help - Я не ебу чё оно делает
-/p <Название> - Находит видио по url
-/q - Показывает очередь
-/skip - Догадайся чё делает
-/clear - Останавливает трек и чистит очередь
-/leave - Кикает бота из войса
-/pause - Ну пауза наверное я не ебу
-/resume - Ты даун?
+/help
+/p
+/q
+/skip
+/clear
+/leave
+/pause
+/resume
 '''
 """
         self.text_channel_text = []
