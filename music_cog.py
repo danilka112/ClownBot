@@ -77,16 +77,16 @@ class music_cog(commands.Cog):
         voice_channel = ctx.author.voice.channel
         if voice_channel is None:
             # you need to be connected so that the bot knows where to go
-            await ctx.send("Войди в войс даун")
+            await ctx.send("Войди в войс")
         elif self.is_paused:
             self.vc.resume()
         else:
             song = self.search_yt(query)
             if type(song) == type(True):
                 await ctx.send(
-                    "Нормальную ссылку пиши или название долаёб.")
+                    "напиши нормальную ссылку.")
             else:
-                await ctx.send("Твой трек далбаёб")
+                await ctx.send("Твой трек")
                 self.music_queue.append([song, voice_channel])
 
                 if self.is_playing == False:
@@ -101,19 +101,19 @@ class music_cog(commands.Cog):
         elif self.is_paused:
             self.vc.resume()
 
-    @commands.command(name="resume", aliases=["r"], help="Хуярим дальше")
+    @commands.command(name="resume", aliases=["r"], help="дальше")
     async def resume(self, ctx, *args):
         if self.is_paused:
             self.vc.resume()
 
-    @commands.command(name="skip", aliases=["s"], help="Скипаем эту хуйню")
+    @commands.command(name="skip", aliases=["s"], help="Скип")
     async def skip(self, ctx):
         if self.vc != None and self.vc:
             self.vc.stop()
             # try to play next in the queue if it exists
             await self.play_music(ctx)
 
-    @commands.command(name="queue", aliases=["q"], help="Залупа в очереди")
+    @commands.command(name="queue", aliases=["q"], help="В очереди")
     async def queue(self, ctx):
         retval = ""
         for i in range(0, len(self.music_queue)):
@@ -124,14 +124,14 @@ class music_cog(commands.Cog):
         if retval != "":
             await ctx.send(retval)
         else:
-            await ctx.send("В очереди нихуя нету")
+            await ctx.send("Очередь пуста")
 
-    @commands.command(name="clear", aliases=["c", "bin"], help="Очищаем очередь от хуйни")
+    @commands.command(name="clear", aliases=["c", "bin"], help="Очищаем очередь")
     async def clear(self, ctx):
         if self.vc != None and self.is_playing:
             self.vc.stop()
         self.music_queue = []
-        await ctx.send("Очередь чистая")
+        await ctx.send("Очередь чиста")
 
     @commands.command(name="leave", aliases=["disconnect", "l", "d"], help="Кикаем бота из войса")
     async def dc(self, ctx):
